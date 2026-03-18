@@ -6,32 +6,33 @@
 <title>AI動画編集・新時代の生存戦略 〜作業者の終焉と「Geminiディレクター」への昇華〜</title>
 
 <script>
-  // 【設定】合言葉をここに入力してください（日本語OK！）
+  // 【設定】合言葉をここに入力してください（例：「さゆっち」など）
   var correctPassword = "どうが"; 
   
-  // 入力ダイアログを表示（ヒントを添えると親切です）
+  // 入力ダイアログを表示
   var input = prompt("合言葉を【ひらがな】で入力してください");
 
-  // 合言葉が一致しない場合の処理
+  // 合言葉が一致しない場合はGoogleへリダイレクト
   if (input !== correctPassword) {
     alert("合言葉が正しくありません。");
-    // 間違えたらGoogleなどの別ページへ飛ばします
     location.href = "https://www.google.com"; 
   }
 </script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  /* 以下、三谷さんの元のスタイルシート（省略せずそのまま維持） */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: 'Noto Sans JP', sans-serif;
     color: #333333;
     background: #f9f9f9;
     line-height: 1.6;
   }
-  /* ...（中略：スタイルが続きます）... */
+
+  /* ヘッダー */
   .header {
     background: linear-gradient(135deg, #FF5757, #8C52FF);
     color: #fff;
@@ -73,6 +74,8 @@
     align-items: center;
     gap: 6px;
   }
+
+  /* ナビ */
   .nav {
     position: sticky;
     top: 0;
@@ -96,6 +99,8 @@
   }
   .nav button.active { color: #A51E6D; border-bottom-color: #A51E6D; }
   .nav button:hover { color: #A51E6D; }
+
+  /* コンテンツ */
   .content {
     max-width: 900px;
     margin: 0 auto;
@@ -103,7 +108,11 @@
   }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+
+  /* セクション間余白 */
   .section { margin-bottom: 48px; }
+
+  /* セクションタイトル */
   .section-title {
     font-size: 18px;
     font-weight: 700;
@@ -112,6 +121,8 @@
     padding-left: 12px;
     margin-bottom: 24px;
   }
+
+  /* キャッチコピーカード */
   .catch-card {
     background: linear-gradient(135deg, #FF5757, #8C52FF);
     border-radius: 12px;
@@ -131,6 +142,8 @@
     opacity: 0.9;
     line-height: 1.8;
   }
+
+  /* ターゲットカード */
   .target-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -147,6 +160,8 @@
   }
   .target-card .t-icon { font-size: 24px; flex-shrink: 0; }
   .target-card p { font-size: 14px; line-height: 1.7; }
+
+  /* リンクカード */
   .link-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -188,6 +203,8 @@
   .link-btn.active { background: #A51E6D; color: #fff; }
   .link-btn.active:hover { opacity: 0.85; }
   .link-btn.pending { background: #EBEBEB; color: #ADADAD; cursor: not-allowed; pointer-events: none; }
+
+  /* チェックリスト */
   .checklist {
     background: #fff;
     border: 1px solid #EBEBEB;
@@ -206,6 +223,8 @@
   }
   .checklist ul li:last-child { border-bottom: none; }
   .check-icon { color: #A51E6D; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+  /* プログラム */
   .program-part {
     border: 1px solid #EBEBEB;
     border-radius: 10px;
@@ -256,6 +275,7 @@
     margin-top: 1px;
   }
   .program-item strong { color: #A51E6D; }
+
   .total-row {
     text-align: right;
     font-size: 13px;
@@ -263,6 +283,8 @@
     font-weight: 700;
     padding-top: 8px;
   }
+
+  /* Gemカード */
   .gem-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -278,6 +300,8 @@
   .gem-card .gem-icon { font-size: 28px; margin-bottom: 8px; }
   .gem-card .gem-name { font-size: 14px; font-weight: 700; color: #A51E6D; margin-bottom: 6px; }
   .gem-card .gem-desc { font-size: 13px; line-height: 1.6; color: #5C5C5C; }
+
+  /* 名言カード */
   .quote-card {
     background: #fff;
     border-left: 4px solid #A51E6D;
@@ -289,6 +313,8 @@
     font-style: italic;
     margin-bottom: 48px;
   }
+
+  /* お知らせカード */
   .notice-card {
     border: 2px solid #EBEBEB;
     border-radius: 10px;
@@ -300,6 +326,8 @@
   .notice-card .notice-icon { font-size: 22px; }
   .notice-card .notice-title { font-size: 16px; font-weight: 700; }
   .notice-card .notice-desc { font-size: 14px; line-height: 1.7; color: #5C5C5C; margin-bottom: 16px; }
+
+  /* 講師カード */
   .lecturer-card {
     background: #F6E9F0;
     border-radius: 12px;
@@ -352,6 +380,8 @@
     font-weight: 700;
     flex-shrink: 0;
   }
+
+  /* レスポンシブ */
   @media (max-width: 640px) {
     .content { padding: 32px 20px; }
     .header { padding: 40px 20px; }
@@ -364,6 +394,7 @@
 </style>
 </head>
 <body>
+
 <header class="header">
   <div class="label">AI副業合宿</div>
   <h1>AI動画編集・新時代の生存戦略</h1>
@@ -382,11 +413,14 @@
 </nav>
 
 <div class="content">
+
   <div id="home" class="tab-panel active">
+
     <div class="catch-card">
-      <div class="catch-main">「時給2,000円の作業員」から<br>「時給1万円のAI指揮官」へ。</div>
-      <div class="catch-sub">Geminiの動画分析能力と最新AIを連携させ、高単価案件（企業研修・マニュアル動画）を<br>最速・最小工数で納品するシステムを、今日この場で構築します。</div>
+      <div class="catch-main">動画編集の経験ゼロでも大丈夫。<br>AIを使えば、今日から「稼げる側」に変われます。</div>
+      <div class="catch-sub">GeminiとManusを組み合わせ、企業研修・マニュアル動画を最速で納品するしくみを構築します。<br>編集経験がある方も、これからの方も——今日この場で、AIを使って稼ぐ第一歩を踏み出しましょう。</div>
     </div>
+
     <div class="section">
       <h2 class="section-title">講師紹介</h2>
       <div class="lecturer-card">
@@ -405,11 +439,180 @@
         </div>
       </div>
     </div>
-    </div>
-</div>
 
-<script>
-// タブ切り替えのスクリプトを維持
+    <div class="section">
+      <h2 class="section-title">こんな方におすすめ</h2>
+      <div class="target-list">
+        <div class="target-card">
+          <span class="t-icon">🎬</span>
+          <p>動画編集の経験はないけれど、AIを使って動画で稼ぐ方法を知りたい方</p>
+        </div>
+        <div class="target-card">
+          <span class="t-icon">✂️</span>
+          <p>テロップ入れやカット作業で時間を取られており、単価や効率を上げたい現役編集者</p>
+        </div>
+        <div class="target-card">
+          <span class="t-icon">🤔</span>
+          <p>AIツールの進化に不安を感じているが、どう使いこなせば稼げるのか見えていない方</p>
+        </div>
+        <div class="target-card">
+          <span class="t-icon">💡</span>
+          <p>ライティングや他のジャンルで活動中で、動画分野も視野に入れてみたい方</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">当日のリンク</h2>
+      <div class="link-grid">
+        <div class="link-card available">
+          <div class="card-header">
+            <span class="card-icon">📑</span>
+            <span class="card-title">当日資料</span>
+          </div>
+          <a href="https://gemini.google.com/gem/1nyWsmpMelVVkBk2NAB6c6KVWeXBZtdC9?usp=sharing" class="link-btn active" target="_blank">資料を開く</a>
+        </div>
+        <div class="link-card available">
+          <div class="card-header">
+            <span class="card-icon">𝕏</span>
+            <span class="card-title">X（Twitter）に投稿する</span>
+          </div>
+          <a href="https://twitter.com/intent/tweet?text=%0A%0Ahttps%3A%2F%2Fx.com%2FSHIFT_AI_0%2Fstatus%2F2027701475955122340%3Fs%3D20&openExternalBrowser=1" class="link-btn active" target="_blank">投稿する</a>
+        </div>
+        <div class="link-card available">
+          <div class="card-header">
+            <span class="card-icon">📋</span>
+            <span class="card-title">アンケートフォーム</span>
+          </div>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLlNPOX1kjPgKsHthWbpolX5SAOXerCnDv-o0fQYpxWQw8RQ/viewform?usp=dialog" class="link-btn active" target="_blank">回答する</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">事前準備のお願い</h2>
+      <div class="checklist">
+        <ul>
+          <li><span class="check-icon">☑</span> Googleアカウントにログインできる状態でご参加ください（Gemini利用のため）</li>
+          <li><span class="check-icon">☑</span> PCをご用意ください（スマホ不可。Chromeブラウザ推奨）</li>
+          <li><span class="check-icon">☑</span> Gemini（gemini.google.com）にアクセスできることを事前に確認しておいてください</li>
+          <li><span class="check-icon">☑</span> 動画編集の経験は一切不要です。「AIで何か稼ぎたい」という気持ちだけで十分です</li>
+          <li><span class="check-icon">☑</span> ElevenLabs・Manusは当日デモで紹介します。事前インストール不要です</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">講師からのメッセージ</h2>
+      <div class="quote-card">
+        「皆さん、動画を1秒ずつ止めてメモを取る作業は、今日で卒業です。それはAIが時給数円でやる仕事です。あなたがやるべきは、Geminiに抽出させたデータを見て、『このバズの法則をどうクライアントに売るか』という戦略を立てること。今日、この場所で『作業者』を辞めて、『AIという軍隊を率いる指揮官』になって帰ってください。半年後、あなたの時給は確実に跳ね上がっています。」
+      </div>
+    </div>
+
+  </div><div id="program" class="tab-panel">
+    <h2 class="section-title">詳細プログラム</h2>
+    <p style="font-size:14px;color:#707070;margin-bottom:32px;">各セクションの内容をまとめています。当日の参考にご活用ください。</p>
+
+    <div class="program-part">
+      <div class="program-part-header">
+        <span class="part-label">第1部</span>
+        <span class="part-title">AI時代の業界地図：スキルの再定義</span>
+        <span class="part-time">10:10〜11:00</span>
+      </div>
+      <div class="program-part-body">
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>AIの現在地</strong>：エンタメ系YouTube以外の動画（企業PR・マニュアル・研修・商品紹介）は、カットから BGM まですでにAIで完結できる時代になっています。この現実をデータとともに整理します。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>消えるスキル・残るスキル</strong>：従来の編集10ステップのうち、カット・字幕・BGM選定（Step1〜3）はAIに完全代替されました。一方、構成設計・ナレーション指示・クライアント折衝・ディレクションは人間にしかできない価値として残ります。自分のスキルがどこに位置するかを確認しましょう。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>新・単価の源泉「言語化力」</strong>：AIに「どんな映像を・なぜ・どう作るか」を正確に伝えるディレクション能力が、これからの単価を決めます。✗「テンポよく編集して」→ ✓「15秒ごとに情報量のピークを作り、冒頭3秒でWHOを提示し、Bロールは情報補足に使う」。この言語化の差が時給の差になります。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>質疑応答</strong>：疑問点はチャットへ。第2部ではGeminiを使って「言語化力」を実際に手に入れていきます。</div></div>
+      </div>
+    </div>
+
+    <div class="program-part">
+      <div class="program-part-header">
+        <span class="part-label">第2部</span>
+        <span class="part-title">Geminiでハックする「爆速リサーチ＆言語化ワーク」</span>
+        <span class="part-time">11:00〜12:00</span>
+      </div>
+      <div class="program-part-body">
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>Geminiによる動画自動分析デモ</strong>：競合動画のYouTube URLをGeminiに貼り付けるだけで、①構成（各セクションの開始秒数と役割）②テンポ（カットの平均秒数）③視覚効果（テロップ・Bロールのパターン）④視聴者の手が止まる心理的要因——を秒単位で自動抽出する方法をデモでお見せします。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>言語化ワーク</strong>：Geminiが抽出したデータをもとに「なぜこの動画は視聴者の手を止めるのか？」を自分の言葉で書いてみます。✗「テンポが速いから」→ ✓「冒頭15秒で問題提起→共感→解決の予告を完結させることで、視聴者に『続きを見ないと損』という判断をさせている」。この言語化がそのままAIへの指示文になります。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>自分専用Gem「Manus Master」を作る</strong>：動画URLを貼るだけでManus用指示書まで自動出力する専用Gemを実際に作ります。①動画解析（リサーチ）②日本語ナレーション台本生成（プランナー）③Manus用高精度英語プロンプト生成（テクニカル）の3機能を1つのGemに凝縮。一度作れば次回からURLを貼るだけで完結します。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>動作確認</strong>：作成したGemに動画URLを貼って動作を確認します。第3部ではこのGemが生成した指示書をManusに渡して、実際に動画を完成させます。</div></div>
+      </div>
+    </div>
+
+    <div class="program-part">
+      <div class="program-part-header">
+        <span class="part-label">第3部</span>
+        <span class="part-title">最新鋭の武器：Manus × Remotion 実戦デモ</span>
+        <span class="part-time">12:00〜12:40</span>
+      </div>
+      <div class="program-part-body">
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>Manus実演：企業研修動画を30分で作る</strong>：Step1 GemにクライアントのPDF資料を読み込ませる → Step2 日本語ナレーション台本を自動生成 → Step3 Manus用英語プロンプトを自動生成 → Step4 ManusでBロール・テロップ・構成を生成 → Step5 ElevenLabsで日本語音声を合成——この全工程をゼロからLIVEデモでお見せします。従来2〜3日かかっていた作業が約30分で完成します。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>【特別公開】Remotionデモ動画上映</strong>：コードベースで動画を「設計図」として管理し、データを更新するだけで動画が自動再生成される最新技術を特別公開します。「ここまで自動化が進んでいる」という最前線を体感してください。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>まとめ</strong>：Manus×ElevenLabsで企業研修動画を30分で納品できること、GemがManus用プロンプトを自動生成することを確認します。「同じ動画を『作業費3万円』で受けますか？それとも『AI導入効率化コンサル20万円』で受けますか？」——この答えを第4部でお伝えします。</div></div>
+      </div>
+    </div>
+
+    <div class="program-part">
+      <div class="program-part-header">
+        <span class="part-label">第4部</span>
+        <span class="part-title">案件獲得とキャリア構築の具体策</span>
+        <span class="part-time">12:40〜13:00</span>
+      </div>
+      <div class="program-part-body">
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>ターゲット選定：ブルーオーシャン戦略</strong>：狙うべきは「企業の文字だらけPDFマニュアル」。全国数十万社が保有しているにもかかわらず動画化できていない領域で、AIを使えば高品質・低コストで対応できます。製造業・医療・教育・不動産・金融など、社員研修・操作マニュアル・採用動画を必要としている企業が理想のクライアントです。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>0円提案術</strong>：実績ゼロでも使える突破口です。①ターゲット企業のHPを見る → ②GeminiでPDF動画化の効果を分析 → ③サンプル動画（30秒）をManusで作成 → ④「御社の○○資料を動画化しました」とメールを送る。「提案します」ではなく「もう作りました」という形で届けることで、相手が判断するだけの状態を作ります。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>20万円請求のロジック</strong>：「作業費（動画1本3〜5万円）」ではなく「AI導入効率化コンサル費（初回20万円）」として提案する方法をお伝えします。例：マニュアル研修の講師コスト年60万円 → AI動画化で年40万円削減 → 初期投資20万円でROI 200%。この数値をそのまま提案資料に使えます。</div></div>
+        <div class="program-item"><span class="pi-dot">▸</span><div><strong>クロージング</strong>：本日使用したコード・Gemプロンプトは翌日中に参加者全員へ共有します。</div></div>
+      </div>
+    </div>
+
+    <div class="total-row">10:10〜13:00（170分）</div>
+
+    <div style="margin-top: 48px;">
+      <h2 class="section-title">受講生が作る「Gem（Manus Master）」の構成</h2>
+      <div class="gem-grid">
+        <div class="gem-card">
+          <div class="gem-icon">🔍</div>
+          <div class="gem-name">リサーチ機能</div>
+          <div class="gem-desc">Geminiのマルチモーダル能力で動画内容を解析</div>
+        </div>
+        <div class="gem-card">
+          <div class="gem-icon">📝</div>
+          <div class="gem-name">プランナー機能</div>
+          <div class="gem-desc">日本語の「刺さる」ナレーション台本を作成</div>
+        </div>
+        <div class="gem-card">
+          <div class="gem-icon">⚙️</div>
+          <div class="gem-name">テクニカル機能</div>
+          <div class="gem-desc">Manusが最も理解しやすい高精度な英語プロンプトを自動生成</div>
+        </div>
+      </div>
+    </div>
+
+  </div><div id="notice" class="tab-panel">
+    <h2 class="section-title">お知らせ</h2>
+
+    <div class="notice-card">
+      <div class="notice-header">
+        <span class="notice-icon">📅</span>
+        <span class="notice-title">次回イベントのお知らせ<span class="badge-pending">準備中</span></span>
+      </div>
+      <p class="notice-desc">次回イベントの情報は準備中です。決まり次第こちらでお知らせします。</p>
+      <span class="link-btn pending">詳細・申込URLは準備中です</span>
+    </div>
+
+    <div class="notice-card">
+      <div class="notice-header">
+        <span class="notice-icon">💬</span>
+        <span class="notice-title">匿名で安心！みんなで育てる「最強のAIパートナー」育成プロジェクト<span class="badge-pending">準備中</span></span>
+      </div>
+      <p class="notice-desc">あなたの「困りごと」や「質問」がコミュニティ全体の財産になります。「こんな初歩的なことを聞いていいの？」そんな心配は無用です。誰にも見られない完全なプライベート空間で質問できます。</p>
+      <span class="link-btn pending">参加URLは準備中です</span>
+    </div>
+
+  </div></div><script>
 function switchTab(tabId, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
