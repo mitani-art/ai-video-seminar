@@ -12,7 +12,6 @@
     --bg-light: #f8fafc;
     --text-main: #1e293b;
     --glow-color: rgba(140, 82, 255, 0.4);
-    --cyber-blue: #00f2ff;
 }
 
 /* 基本設定 */
@@ -91,21 +90,20 @@ body {
 }
 .hero-content { position: relative; z-index: 10; }
 .hero-label {
-    display: inline-block; background: var(--primary-gradient); padding: 6px 20px;
-    border-radius: 50px; font-weight: 900; font-size: 14px; margin-bottom: 24px;
-    letter-spacing: 0.1em;
+    display: inline-block; background: var(--primary-gradient); padding: 10px 28px;
+    border-radius: 50px; font-weight: 900; font-size: 18px; margin-bottom: 24px;
+    letter-spacing: 0.15em;
 }
 .hero h1 { font-size: clamp(36px, 10vw, 84px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
 .hero-sub { font-size: clamp(18px, 4vw, 32px); opacity: 0.9; margin-bottom: 40px; font-weight: 700; color: #fff; }
 
-/* レイアウト */
+/* レイアウト共通 */
 .content { max-width: 1200px; margin: 0 auto; padding: 100px 24px; }
 .sec-title-wrap { margin-bottom: 80px; text-align: center; }
 .sec-title { 
-    font-size: clamp(28px, 5vw, 48px); font-weight: 900; margin-bottom: 16px; 
+    font-size: clamp(32px, 6vw, 56px); font-weight: 900; margin-bottom: 20px; 
     background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.sec-desc { font-size: 18px; font-weight: 700; color: #64748b; }
 
 /* 成果グリッド */
 .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
@@ -115,13 +113,12 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.03);
 }
 .exp-card:hover { transform: translateY(-12px); box-shadow: 0 40px 80px rgba(140, 82, 255, 0.1); }
-.exp-icon { font-size: 56px; margin-bottom: 32px; display: block; }
-.exp-tag { color: var(--accent-color); font-weight: 900; font-size: 14px; margin-bottom: 12px; display: block; }
-.exp-card h3 { font-size: 24px; font-weight: 900; margin-bottom: 20px; line-height: 1.4; }
-.exp-card p { font-size: 16px; font-weight: 700; color: #64748b; }
-.txt-accent { color: var(--accent-color); }
+.exp-icon { font-size: 64px; margin-bottom: 32px; display: block; }
+.exp-tag { color: var(--accent-color); font-weight: 900; font-size: 18px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+.exp-card h3 { font-size: 28px; font-weight: 900; margin-bottom: 20px; line-height: 1.4; }
+.exp-card p { font-size: 18px; font-weight: 700; color: #64748b; }
 
-/* 動画セクション（司令室デザイン） */
+/* 司令室ハンズオンセクション（画像を隠さない配置） */
 .video-section {
     background: #020617; border-radius: 60px; padding: 100px 40px; margin: 120px 0;
     text-align: center; color: #fff; position: relative; overflow: hidden;
@@ -134,13 +131,14 @@ body {
 }
 .video-display {
     aspect-ratio: 16/9; background: #0a0f1e; border-radius: 30px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
     position: relative; overflow: hidden;
     background-image: 
         linear-gradient(rgba(140, 82, 255, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(140, 82, 255, 0.1) 1px, transparent 1px);
     background-size: 40px 40px;
     animation: grid-move 4s linear infinite;
+    padding-bottom: 40px;
 }
 .video-bg-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -148,80 +146,69 @@ body {
     mix-blend-mode: screen; z-index: 1;
 }
 
-/* デジタルHUD要素 */
-.hud-circle {
-    position: absolute; width: 400px; height: 400px; border: 1px solid rgba(140, 82, 255, 0.2);
-    border-radius: 50%; z-index: 2; border-style: dashed; animation: hud-rotate 20s linear infinite;
-}
-.hud-circle-inner {
-    position: absolute; width: 300px; height: 300px; border: 2px solid rgba(255, 87, 87, 0.15);
-    border-radius: 50%; z-index: 2; border-style: dotted; animation: hud-rotate 10s linear reverse infinite;
+/* 起動完了テキスト：上部に配置して画像を隠さない */
+.ai-status-text {
+    position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+    z-index: 5; font-weight: 900; font-size: clamp(16px, 4vw, 32px);
+    letter-spacing: 0.2em; color: #fff; text-shadow: 0 0 20px var(--accent-color);
+    background: rgba(0,0,0,0.6); padding: 12px 48px; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.2);
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
 }
 
 .video-overlay-diagram {
     position: absolute; inset: 0; z-index: 4; pointer-events: none;
 }
 .diagram-node {
-    position: absolute; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px); border-radius: 12px; padding: 14px 20px; color: #fff;
-    font-size: 13px; font-weight: 700; text-align: left;
+    position: absolute; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px); border-radius: 12px; padding: 18px 28px; color: #fff;
+    font-size: 18px; font-weight: 700; text-align: left;
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
     transition: all 0.5s ease;
+    opacity: 0.9;
 }
-.node-01 { top: 15%; left: 8%; border-left: 4px solid #FF5757; }
-.node-02 { bottom: 15%; left: 8%; border-left: 4px solid #8C52FF; }
-.node-03 { top: 50%; right: 8%; transform: translateY(-50%); border: 2px solid var(--accent-color); box-shadow: 0 0 40px var(--accent-color); }
+.diagram-node .node-label { font-size: 13px; font-weight: 900; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+.node-01 { top: 12%; left: 8%; border-left: 6px solid #FF5757; }
+.node-02 { bottom: 25%; left: 8%; border-left: 6px solid #8C52FF; }
+.node-03 { top: 55%; right: 8%; transform: translateY(-50%); border: 3px solid var(--accent-color); box-shadow: 0 0 40px var(--accent-color); }
 
-.ai-status-text {
-    position: relative; z-index: 5; font-weight: 900; font-size: clamp(18px, 4vw, 28px);
-    letter-spacing: 0.15em; color: #fff; text-shadow: 0 0 20px var(--accent-color);
-    background: rgba(0,0,0,0.4); padding: 10px 30px; border-radius: 10px;
-}
-.handson-badge {
-    position: absolute; top: 30px; right: 30px; background: var(--primary-gradient);
-    color: #fff; padding: 10px 20px; border-radius: 50px; font-weight: 900; font-size: 14px;
-    z-index: 11; box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
+.sync-status-box {
+    background: rgba(0,0,0,0.7); padding: 10px 25px; border-radius: 8px; 
+    font-size: 14px; font-family: monospace; position: relative; z-index: 5; 
+    border: 1px solid rgba(74, 222, 128, 0.4); box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
 }
 
-/* ビフォーアフター */
-.ba-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 60px; }
-.ba-card {
-    padding: 60px 40px; border-radius: 40px; position: relative;
-    display: flex; flex-direction: column; justify-content: center;
-}
-.ba-card.before { background: #fff; border: 1px solid #e2e8f0; }
-.ba-card.after { background: var(--primary-gradient); color: #fff; }
-.ba-label { font-size: 14px; font-weight: 900; opacity: 0.6; margin-bottom: 16px; }
-.ba-main { font-size: clamp(48px, 8vw, 72px); font-weight: 900; line-height: 1; margin: 20px 0; }
-.ba-sub { font-size: 20px; font-weight: 700; }
-
-/* 講師カード */
+/* 講師プロフィール */
 .instructor-card {
     background: #fff; border-radius: 48px; padding: 60px;
     display: grid; grid-template-columns: 350px 1fr; gap: 60px;
     box-shadow: 0 40px 80px rgba(0,0,0,0.05); align-items: center;
 }
-.ins-photo { width: 100%; border-radius: 32px; object-fit: cover; aspect-ratio: 1/1; }
-.ins-name { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
-.ins-title { font-size: 20px; font-weight: 700; color: var(--accent-color); margin-bottom: 32px; }
+.ins-photo { width: 100%; border-radius: 32px; object-fit: cover; aspect-ratio: 1/1; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.ins-name { font-size: 36px; font-weight: 900; margin-bottom: 12px; }
+.ins-title { font-size: 22px; font-weight: 700; color: var(--accent-color); margin-bottom: 32px; }
 .ins-list { list-style: none; }
-.ins-list li { margin-bottom: 16px; padding-left: 24px; position: relative; font-weight: 700; font-size: 18px; }
+.ins-list li { margin-bottom: 20px; padding-left: 28px; position: relative; font-weight: 700; font-size: 20px; }
 .ins-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-color); font-weight: 900; }
 
-/* リンクグリッド */
+/* 当日用リンク（カード型再デザイン） */
 .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
 .link-card {
-    background: #fff; border-radius: 24px; padding: 32px; border: 1px solid #f1f5f9;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); text-align: center; transition: 0.3s;
+    background: #fff; border-radius: 28px; padding: 48px 32px; border: 1px solid #f1f5f9;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04); text-align: center; transition: 0.4s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
-.link-card:hover { transform: translateY(-8px); border-color: var(--accent-color); }
-.link-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+.link-card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 30px 60px rgba(140, 82, 255, 0.1); }
+.link-icon { font-size: 56px; margin-bottom: 24px; display: block; }
+.link-card h3 { font-size: 24px; font-weight: 900; margin-bottom: 24px; color: #1e293b; }
 .link-btn {
-    display: inline-block; width: 100%; padding: 14px; background: var(--accent-color);
-    color: #fff; text-decoration: none; border-radius: 12px; font-weight: 900; transition: 0.3s;
+    display: inline-block; width: 100%; padding: 18px; background: var(--accent-color);
+    color: #fff; text-decoration: none; border-radius: 14px; font-weight: 900; transition: 0.3s; font-size: 18px;
+    box-shadow: 0 10px 20px rgba(165,30,109,0.2);
 }
 
-/* プログラムカード */
+/* 進行スケジュール（改行防止アップデート） */
 .program-card {
     background: #fff; border-radius: 32px; overflow: hidden; margin-bottom: 40px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.03); border: 1px solid #f1f5f9;
@@ -229,36 +216,70 @@ body {
 .program-head {
     background: var(--primary-gradient); padding: 32px 48px; color: #fff;
     display: flex; justify-content: space-between; align-items: center;
+    gap: 30px;
 }
-.program-body { padding: 48px; }
-.program-item { display: flex; gap: 24px; margin-bottom: 32px; }
+.program-head h3 { 
+    font-size: clamp(20px, 3.8vw, 36px); 
+    font-weight: 900; 
+    white-space: nowrap; /* 1行に収める */
+    flex: 1;
+    text-align: center;
+}
+.program-head .part-label { font-size: 24px; font-weight: 900; opacity: 0.8; flex-shrink: 0; }
+.program-head .time-label { font-size: 22px; font-weight: 900; opacity: 0.8; flex-shrink: 0; }
+
+.program-body { padding: 80px 48px; text-align: center; }
+.program-item { display: flex; flex-direction: column; align-items: center; gap: 24px; margin-bottom: 60px; }
 .program-item:last-child { margin-bottom: 0; }
 .program-tag { 
-    background: #f1f5f9; color: var(--accent-color); padding: 6px 16px; 
-    border-radius: 8px; font-size: 12px; font-weight: 900; height: fit-content;
+    background: #f1f5f9; color: var(--accent-color); padding: 14px 48px; 
+    border-radius: 12px; font-size: 22px; font-weight: 900; box-shadow: 0 4px 15px rgba(165,30,109,0.1);
 }
-.program-text { font-size: 18px; font-weight: 700; color: #334155; }
+.program-text { font-size: 24px; font-weight: 700; color: #1e293b; max-width: 950px; line-height: 1.7; }
 
-/* ローディングオーバーレイ */
+/* 特別メッセージ */
+.lecturer-message-section {
+    background: #fff; border-radius: 60px; padding: 120px 60px; margin: 120px 0;
+    text-align: center; position: relative; border: 1px solid #e2e8f0;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.04);
+}
+.message-header-label {
+    font-size: 18px; font-weight: 900; color: var(--accent-color); letter-spacing: 0.5em;
+    margin-bottom: 40px; display: block; text-transform: uppercase;
+}
+.message-content { max-width: 1000px; margin: 0 auto; }
+.message-content p {
+    font-size: clamp(22px, 3.5vw, 32px); font-weight: 700; line-height: 2.2; color: #1e293b;
+    word-break: keep-all; text-align: left; margin-bottom: 60px;
+}
+.message-content span.highlight { background: linear-gradient(transparent 70%, rgba(255, 87, 87, 0.2) 70%); padding: 0 4px; font-weight: 900; }
+.message-conclude { margin-top: 80px; padding-top: 80px; border-top: 2px solid #f1f5f9; }
+.message-trajectory-title { font-size: 36px; font-weight: 900; color: var(--accent-color); margin-bottom: 32px; }
+.message-story-text {
+    font-size: 26px; font-weight: 700; color: #334155; line-height: 1.8; max-width: 900px; margin: 0 auto;
+    background: #f8fafc; padding: 50px; border-radius: 32px; font-style: italic; border: 1px solid #e2e8f0;
+}
+
+/* ローディング */
 .loading-overlay {
     position: absolute; inset: 0; background: #000; z-index: 10;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     transition: opacity 1s ease-out;
 }
-.loading-bar-wrap {
-    width: 200px; height: 1px; background: rgba(255,255,255,0.2); margin-top: 20px; position: relative; overflow: hidden;
-}
-.loading-bar-fill {
-    position: absolute; left: -100%; width: 100%; height: 100%; background: var(--primary-gradient); animation: loading-anim 2s infinite;
-}
+.loading-bar-wrap { width: 200px; height: 1px; background: rgba(255,255,255,0.2); margin-top: 20px; position: relative; overflow: hidden; }
+.loading-bar-fill { position: absolute; left: -100%; width: 100%; height: 100%; background: var(--primary-gradient); animation: loading-anim 2s infinite; }
 
 @media (max-width: 900px) {
-    .exp-grid, .ba-container, .instructor-card, .link-grid { grid-template-columns: 1fr; display: block; }
-    .exp-card, .ba-card, .link-card { margin-bottom: 24px; }
+    .exp-grid, .instructor-card, .link-grid { grid-template-columns: 1fr; display: block; }
+    .exp-card, .link-card { margin-bottom: 24px; }
     .content { padding: 60px 20px; }
-    .video-overlay-diagram { display: none; }
-    .hud-circle, .hud-circle-inner { display: none; }
-    .program-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .video-overlay-diagram, .hud-circle, .hud-circle-inner { display: none; }
+    .program-head { flex-direction: column; align-items: center; padding: 24px; text-align: center; }
+    .program-head h3 { white-space: normal; font-size: 24px; margin: 10px 0; }
+    .program-tag { font-size: 18px; padding: 10px 30px; }
+    .program-text { font-size: 20px; }
+    .lecturer-message-section { padding: 80px 24px; }
+    .message-story-text { font-size: 20px; padding: 30px; }
 }
 </style>
 </head>
@@ -275,13 +296,14 @@ body {
 
 <div id="main-content" style="display: none;">
 
+    <!-- ヒーロー -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
             <span class="hero-label">2026年 生存戦略</span>
             <h1>AI動画編集<br>新時代の生存戦略</h1>
             <p class="hero-sub">作業者を卒業し、AI軍団を率いる指揮官へ。</p>
-            <div style="font-weight: 900; opacity: 0.8; letter-spacing: 0.2em;">2026.03.21 土曜日 10:00 - 13:30</div>
+            <div style="font-weight: 900; opacity: 0.8; letter-spacing: 0.2em; font-size: 20px;">2026.03.21 土曜日 10:00 - 13:30</div>
         </div>
     </section>
 
@@ -289,7 +311,6 @@ body {
         <!-- 成果 -->
         <div class="sec-title-wrap reveal">
             <h2 class="sec-title">この合宿で手にする<br>圧倒的な「3つの成果」</h2>
-            <p class="sec-desc">文字の講義ではなく、実戦を通じた体得を重視します。</p>
         </div>
 
         <div class="exp-grid">
@@ -313,79 +334,53 @@ body {
             </div>
         </div>
 
-        <!-- 司令室ハンズオンセクション -->
+        <!-- 司令室ハンズオン（改善版） -->
         <div class="video-section reveal">
-            <h2 style="font-size: clamp(24px, 5vw, 44px); font-weight: 900; line-height: 1.2;">
+            <h2 style="font-size: clamp(28px, 5vw, 54px); font-weight: 900; line-height: 1.2;">
                 30分後、あなたは<br>
                 <span style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">5万円の価値</span>を生み出している。
             </h2>
-            <p style="opacity: 0.8; font-weight: 700; margin-top: 24px; font-size: 18px;">
+            <p style="opacity: 0.8; font-weight: 700; margin-top: 24px; font-size: 22px;">
                 台本ゼロから、最高峰の動画をその場で作り上げる。<br>
-                講師と同時に手を動かす「超・集中ハンズオン」。
+                講師とシンクロして手を動かす「超・集中ハンズオン」。
             </p>
 
             <div class="video-frame">
-                <div class="handson-badge">LIVE HANDSON</div>
                 <div class="video-display" id="video-display">
+                    <!-- ステータスバナー：上部に固定して画像を隠さない -->
+                    <p class="ai-status-text" id="ai-status">AI司令室、同期準備完了。</p>
+
                     <div class="loading-overlay" id="ai-loading">
-                        <span style="font-family: monospace; color: #fff; font-size: 14px; letter-spacing: 0.2em;">SYNCING WITH AI CORE...</span>
+                        <span style="font-family: monospace; color: #fff; font-size: 16px; letter-spacing: 0.2em;">SYNCING WITH AI CORE...</span>
                         <div class="loading-bar-wrap"><div class="loading-bar-fill"></div></div>
                     </div>
-                    
-                    <div class="hud-circle"></div>
-                    <div class="hud-circle-inner"></div>
 
                     <div class="video-overlay-diagram">
-                        <svg width="100%" height="100%" style="position:absolute; inset:0;">
-                            <path d="M 280 140 Q 400 140, 600 240" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none" stroke-dasharray="10,10" style="animation: dash-flow 2s linear infinite;"></path>
-                            <path d="M 280 360 Q 400 360, 600 260" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none" stroke-dasharray="10,10" style="animation: dash-flow 2s linear infinite;"></path>
-                        </svg>
                         <div class="diagram-node node-01">
-                            <div style="color:#FF5757; font-size:10px; margin-bottom:4px;">思考のコア (Gemini)</div>
+                            <div class="node-label">思考コア (Gemini)</div>
                             構成エンジンの同期中...
                         </div>
                         <div class="diagram-node node-02">
-                            <div style="color:#8C52FF; font-size:10px; margin-bottom:4px;">発声のコア (ElevenLabs)</div>
+                            <div class="node-label">発声コア (ElevenLabs)</div>
                             ナレーション音声を生成中...
                         </div>
                         <div class="diagram-node node-03">
-                            <div style="color:#fff; font-size:11px; margin-bottom:4px; font-weight:900;">ディレクター核 (Manus)</div>
+                            <div class="node-label">ディレクター核 (Manus)</div>
                             自動編集・即時納品
                         </div>
                     </div>
 
-                    <img id="ai-generated-bg" src="ai-bg.jpg" alt="AI司令室">
-                    <p class="ai-status-text" id="ai-status">AI司令室、システム待機中。</p>
-                    <div style="margin-top: 20px; background: rgba(0,0,0,0.7); padding: 10px 25px; border-radius: 8px; font-size: 14px; font-family: monospace; position: relative; z-index: 5; border: 1px solid rgba(74, 222, 128, 0.4); box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);">
-                        SYNC STATUS: <span id="sync-status" style="color: #4ADE80; font-weight: 900;">HANDSON ACTIVE</span>
+                    <img id="ai-generated-bg" src="ai-bg-jpg" alt="AI司令室">
+                    
+                    <div class="sync-status-box">
+                        SYNC STATUS: <span id="sync-status" style="color: #FF5757; font-weight: 900;">INITIALIZING</span>
                     </div>
                 </div>
             </div>
             
-            <p style="margin-top: 40px; font-weight: 900; color: #4ADE80; font-size: 22px; text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);">
+            <p style="margin-top: 40px; font-weight: 900; color: #4ADE80; font-size: 28px; text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);">
                 このスピード感は、あなたの「常識」を塗り替える。
             </p>
-        </div>
-
-        <!-- 生産性セクション -->
-        <div class="sec-title-wrap reveal">
-            <h2 class="sec-title">「労働」を捨て、「投資」へ。</h2>
-            <p class="sec-desc">編集の常識をAIで破壊し、生産性を極限まで高める。</p>
-        </div>
-
-        <div class="ba-container">
-            <div class="ba-card before reveal">
-                <div class="ba-label">従来の手法</div>
-                <p>泥臭い手作業</p>
-                <div class="ba-main">48時間</div>
-                <p class="ba-sub">1本の動画制作</p>
-            </div>
-            <div class="ba-card after reveal">
-                <div class="ba-label">AI指揮官の手法</div>
-                <p>AIディレクション</p>
-                <div class="ba-main">30分</div>
-                <p class="ba-sub">驚異のスピード納品</p>
-            </div>
         </div>
 
         <!-- 講師プロフィール -->
@@ -406,43 +401,39 @@ body {
             </div>
         </div>
 
-        <!-- 当日用リンク -->
+        <!-- 当日用リンク（改善版） -->
         <div class="sec-title-wrap reveal" style="margin-top: 120px;">
             <h2 class="sec-title">当日用リンク</h2>
-            <p class="sec-desc">合宿で利用する資料やアンケートはこちらからアクセスできます。</p>
         </div>
 
         <div class="link-grid reveal">
             <div class="link-card">
                 <span class="link-icon">📑</span>
-                <h3 style="font-weight:900; margin-bottom:16px;">当日配布資料</h3>
+                <h3>当日配布資料</h3>
                 <a href="https://gemini.google.com/gem/1nyWsmpMelVVkBk2NAB6c6KVWeXBZtdC9?usp=sharing" class="link-btn" target="_blank">資料を開く</a>
             </div>
             <div class="link-card">
                 <span class="link-icon">📋</span>
-                <h3 style="font-weight:900; margin-bottom:16px;">アンケート</h3>
+                <h3>アンケート</h3>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLlNPOX1kjPgKsHthWbpolX5SAOXerCnDv-o0fQYpxWQw8RQ/viewform?usp=dialog" class="link-btn" target="_blank">回答する</a>
             </div>
             <div class="link-card">
                 <span class="link-icon">𝕏</span>
-                <h3 style="font-weight:900; margin-bottom:16px;">SNSでシェア</h3>
+                <h3>SNSでシェア</h3>
                 <a href="https://twitter.com/intent/tweet?text=AI動画編集合宿に参加中！" class="link-btn" target="_blank">𝕏 に投稿する</a>
             </div>
         </div>
 
-        <!-- 進行スケジュール -->
+        <!-- 進行スケジュール（改行防止版） -->
         <div class="sec-title-wrap reveal" style="margin-top: 120px;">
             <h2 class="sec-title">合宿プログラム：進行スケジュール</h2>
-            <p class="sec-desc">170分で「編集」という概念を塗り替えるための全行程。</p>
         </div>
 
         <div class="program-card reveal">
             <div class="program-head">
-                <div style="display:flex; align-items:center; gap:20px;">
-                    <span style="font-weight:900; opacity:0.6;">第1部</span>
-                    <h3 style="font-size:24px; font-weight:900;">AIが編集を終わらせる瞬間</h3>
-                </div>
-                <span style="font-weight:900;">10:10〜</span>
+                <span class="part-label">第1部</span>
+                <h3>AIが編集を終わらせる瞬間</h3>
+                <span class="time-label">10:10〜</span>
             </div>
             <div class="program-body">
                 <div class="program-item">
@@ -458,11 +449,9 @@ body {
 
         <div class="program-card reveal">
             <div class="program-head">
-                <div style="display:flex; align-items:center; gap:20px;">
-                    <span style="font-weight:900; opacity:0.6;">第2部</span>
-                    <h3 style="font-size:24px; font-weight:900;">自分専用の「AIパートナー」をその場で構築</h3>
-                </div>
-                <span style="font-weight:900;">11:00〜</span>
+                <span class="part-label">第2部</span>
+                <h3>自分専用の「AIパートナー」をその場で構築</h3>
+                <span class="time-label">11:00〜</span>
             </div>
             <div class="program-body">
                 <div class="program-item">
@@ -478,39 +467,40 @@ body {
 
         <div class="program-card reveal">
             <div class="program-head">
-                <div style="display:flex; align-items:center; gap:20px;">
-                    <span style="font-weight:900; opacity:0.6;">第3部</span>
-                    <h3 style="font-size:24px; font-weight:900;">共同制作：30分動画生成ハンズオン</h3>
-                </div>
-                <span style="font-weight:900;">12:00〜</span>
+                <span class="part-label">第3部</span>
+                <h3>共同制作：30分動画生成ハンズオン</h3>
+                <span class="time-label">12:00〜</span>
             </div>
             <div class="program-body">
                 <div class="program-item">
-                    <span class="program-tag">参加型実践</span>
+                    <span class="program-tag">リアルタイム実演</span>
                     <p class="program-text">講師とシンクロして手を動かし、納品レベルの動画を30分で完成させます。思考が現実化するスピードを体験してください。</p>
                 </div>
             </div>
         </div>
 
-        <div class="program-card reveal">
-            <div class="program-head">
-                <div style="display:flex; align-items:center; gap:20px;">
-                    <span style="font-weight:900; opacity:0.6;">第4部</span>
-                    <h3 style="font-size:24px; font-weight:900;">特別セッション：過去から現在のリアルの軌跡</h3>
+        <!-- 特別セクション: 講師の想い -->
+        <section class="lecturer-message-section reveal">
+            <span class="message-header-label">MESSAGE FROM LECTURER</span>
+            <div class="message-content">
+                <p>
+                    「動画編集の司令塔」として圧倒的に稼ぎ、<br>
+                    その先は「講師」として仲間を導く存在へ。<br><br>
+                    テロップ1枚で夜を明かした私を救った<span class="highlight">「AIという自由」</span>を、<br>
+                    次はあなたが誰かに届ける番です。<br><br>
+                    道具に使われる日々を卒業し、半年後、<br>
+                    教壇に立っているあなたの姿を私は確信しています。
+                </p>
+                <div class="message-conclude">
+                    <div class="message-trajectory-title">三谷 小百合の過去から現在のリアルの軌跡</div>
+                    <p class="message-story-text">
+                        最初から司令塔だったわけではない、人様には言えないほど不器用で、泥にまみれた私の「在宅ワーク黒歴史」を、今日は隠さずお話しします。
+                    </p>
                 </div>
-                <span style="font-weight:900;">12:40〜</span>
             </div>
-            <div class="program-body">
-                <div class="program-item">
-                    <span class="program-tag">メッセージ</span>
-                    <p class="program-text">「動画編集の司令塔」として圧倒的に稼ぎ、その先は「講師」として仲間を導く存在へ。
-テロップ1枚で夜を明かした私を救った「AIという自由」を、次はあなたが誰かに届ける番です。
-道具に使われる日々を卒業し、半年後、教壇に立っているあなたの姿を私は確信しています。</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <div style="text-align:right; font-weight:900; font-size:20px; color:var(--accent-color); margin-top: 20px; padding-bottom: 100px;">
+        <div style="text-align:right; font-weight:900; font-size:28px; color:var(--accent-color); margin-top: 20px; padding-bottom: 100px;">
             合計：170分 集中セッション
         </div>
     </div>
@@ -525,7 +515,7 @@ async function initAiDisplay() {
     const statusText = document.getElementById('ai-status');
     const syncStatus = document.getElementById('sync-status');
     
-    const promptText = "A high-end, futuristic AI video control room interior, glowing data screens, holographic timelines, cinematic lighting with deep purple and neon red, hyper-realistic, 16:9 aspect ratio.";
+    const promptText = "A cinematic, ultra-modern interior of a high-tech AI video operations room, glowing data interfaces, holographic editing timelines, deep purple and neon red lighting, 16:9, hyper-detailed digital art.";
 
     const fetchImage = async (retryCount = 0) => {
         try {
@@ -549,7 +539,7 @@ async function initAiDisplay() {
                     loader.style.opacity = '0';
                     setTimeout(() => loader.style.display = 'none', 1000);
                     imgEl.style.opacity = '0.5';
-                    statusText.innerText = "AI司令室、起動完了。";
+                    statusText.innerText = "AI司令室、同期完了。";
                     syncStatus.innerText = "HANDSON ACTIVE";
                     syncStatus.style.color = "#4ADE80";
                 };
@@ -560,7 +550,7 @@ async function initAiDisplay() {
             } else {
                 loader.style.opacity = '0';
                 setTimeout(() => loader.style.display = 'none', 1000);
-                statusText.innerText = "AI司令室、同期完了。";
+                statusText.innerText = "AI司令室、オフライン同期済み。";
             }
         }
     };
