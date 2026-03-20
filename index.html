@@ -114,11 +114,11 @@ body {
 }
 .exp-card:hover { transform: translateY(-12px); box-shadow: 0 40px 80px rgba(140, 82, 255, 0.1); }
 .exp-icon { font-size: 64px; margin-bottom: 32px; display: block; }
-.exp-tag { color: var(--accent-color); font-weight: 900; font-size: 18px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+.exp-tag { color: var(--accent-color); font-weight: 900; font-size: 16px; text-transform: uppercase; margin-bottom: 12px; display: block; }
 .exp-card h3 { font-size: 28px; font-weight: 900; margin-bottom: 20px; line-height: 1.4; }
 .exp-card p { font-size: 18px; font-weight: 700; color: #64748b; }
 
-/* 司令室ハンズオンセクション（画像を隠さない配置） */
+/* 司令室ハンズオンセクション */
 .video-section {
     background: #020617; border-radius: 60px; padding: 100px 40px; margin: 120px 0;
     text-align: center; color: #fff; position: relative; overflow: hidden;
@@ -143,15 +143,15 @@ body {
 .video-bg-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; opacity: 0; transition: opacity 2s ease-in-out;
-    mix-blend-mode: screen; z-index: 1;
+    z-index: 1;
 }
 
-/* 起動完了テキスト：上部に配置して画像を隠さない */
+/* 起動完了テキスト */
 .ai-status-text {
     position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
-    z-index: 5; font-weight: 900; font-size: clamp(16px, 4vw, 32px);
+    z-index: 10; font-weight: 900; font-size: clamp(16px, 4vw, 32px);
     letter-spacing: 0.2em; color: #fff; text-shadow: 0 0 20px var(--accent-color);
-    background: rgba(0,0,0,0.6); padding: 12px 48px; border-radius: 50px;
+    background: rgba(0,0,0,0.7); padding: 12px 48px; border-radius: 50px;
     border: 1px solid rgba(255,255,255,0.2);
     white-space: nowrap;
     backdrop-filter: blur(10px);
@@ -161,22 +161,26 @@ body {
     position: absolute; inset: 0; z-index: 4; pointer-events: none;
 }
 .diagram-node {
-    position: absolute; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2);
+    position: absolute; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.3);
     backdrop-filter: blur(12px); border-radius: 12px; padding: 18px 28px; color: #fff;
     font-size: 18px; font-weight: 700; text-align: left;
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
     transition: all 0.5s ease;
-    opacity: 0.9;
 }
 .diagram-node .node-label { font-size: 13px; font-weight: 900; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
-.node-01 { top: 12%; left: 8%; border-left: 6px solid #FF5757; }
+.node-01 { top: 15%; left: 8%; border-left: 6px solid #FF5757; }
 .node-02 { bottom: 25%; left: 8%; border-left: 6px solid #8C52FF; }
 .node-03 { top: 55%; right: 8%; transform: translateY(-50%); border: 3px solid var(--accent-color); box-shadow: 0 0 40px var(--accent-color); }
 
 .sync-status-box {
     background: rgba(0,0,0,0.7); padding: 10px 25px; border-radius: 8px; 
-    font-size: 14px; font-family: monospace; position: relative; z-index: 5; 
+    font-size: 14px; font-family: monospace; position: relative; z-index: 10; 
     border: 1px solid rgba(74, 222, 128, 0.4); box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+}
+.handson-badge {
+    position: absolute; top: 30px; right: 30px; background: var(--primary-gradient);
+    color: #fff; padding: 12px 24px; border-radius: 50px; font-weight: 900; font-size: 16px;
+    z-index: 11; box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
 }
 
 /* 講師プロフィール */
@@ -204,11 +208,11 @@ body {
 .link-card h3 { font-size: 24px; font-weight: 900; margin-bottom: 24px; color: #1e293b; }
 .link-btn {
     display: inline-block; width: 100%; padding: 18px; background: var(--accent-color);
-    color: #fff; text-decoration: none; border-radius: 14px; font-weight: 900; transition: 0.3s; font-size: 18px;
+    color: #fff !important; text-decoration: none !important; border-radius: 14px; font-weight: 900; transition: 0.3s; font-size: 18px;
     box-shadow: 0 10px 20px rgba(165,30,109,0.2);
 }
 
-/* 進行スケジュール（改行防止アップデート） */
+/* 進行スケジュール */
 .program-card {
     background: #fff; border-radius: 32px; overflow: hidden; margin-bottom: 40px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.03); border: 1px solid #f1f5f9;
@@ -221,7 +225,7 @@ body {
 .program-head h3 { 
     font-size: clamp(20px, 3.8vw, 36px); 
     font-weight: 900; 
-    white-space: nowrap; /* 1行に収める */
+    white-space: nowrap; 
     flex: 1;
     text-align: center;
 }
@@ -262,7 +266,7 @@ body {
 
 /* ローディング */
 .loading-overlay {
-    position: absolute; inset: 0; background: #000; z-index: 10;
+    position: absolute; inset: 0; background: #000; z-index: 100;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     transition: opacity 1s ease-out;
 }
@@ -296,7 +300,6 @@ body {
 
 <div id="main-content" style="display: none;">
 
-    <!-- ヒーロー -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
@@ -334,7 +337,7 @@ body {
             </div>
         </div>
 
-        <!-- 司令室ハンズオン（改善版） -->
+        <!-- 司令室ハンズオン -->
         <div class="video-section reveal">
             <h2 style="font-size: clamp(28px, 5vw, 54px); font-weight: 900; line-height: 1.2;">
                 30分後、あなたは<br>
@@ -346,9 +349,10 @@ body {
             </p>
 
             <div class="video-frame">
+                <div class="handson-badge">LIVE HANDSON</div>
                 <div class="video-display" id="video-display">
-                    <!-- ステータスバナー：上部に固定して画像を隠さない -->
-                    <p class="ai-status-text" id="ai-status">AI司令室、同期準備完了。</p>
+                    <!-- ステータスバナー -->
+                    <p class="ai-status-text" id="ai-status">AI司令室、システム待機中。</p>
 
                     <div class="loading-overlay" id="ai-loading">
                         <span style="font-family: monospace; color: #fff; font-size: 16px; letter-spacing: 0.2em;">SYNCING WITH AI CORE...</span>
@@ -370,7 +374,8 @@ body {
                         </div>
                     </div>
 
-                    <img id="ai-generated-bg" src="ai-bg.jpg" alt="AI司令室">
+                    <!-- 優先的に ai-bg.jpg を読み込み、なければ生成画像を表示 -->
+                    <img id="ai-generated-bg" src="ai-bg.jpg" class="video-bg-img" alt="AI司令室" onerror="this.style.display='none';">
                     
                     <div class="sync-status-box">
                         SYNC STATUS: <span id="sync-status" style="color: #FF5757; font-weight: 900;">INITIALIZING</span>
@@ -401,7 +406,7 @@ body {
             </div>
         </div>
 
-        <!-- 当日用リンク（改善版） -->
+        <!-- 当日用リンク -->
         <div class="sec-title-wrap reveal" style="margin-top: 120px;">
             <h2 class="sec-title">当日用リンク</h2>
         </div>
@@ -424,7 +429,7 @@ body {
             </div>
         </div>
 
-        <!-- 進行スケジュール（改行防止版） -->
+        <!-- 進行スケジュール -->
         <div class="sec-title-wrap reveal" style="margin-top: 120px;">
             <h2 class="sec-title">合宿プログラム：進行スケジュール</h2>
         </div>
@@ -514,10 +519,24 @@ async function initAiDisplay() {
     const imgEl = document.getElementById('ai-generated-bg');
     const statusText = document.getElementById('ai-status');
     const syncStatus = document.getElementById('sync-status');
-    
-    const promptText = "A cinematic, ultra-modern interior of a high-tech AI video operations room, glowing data interfaces, holographic editing timelines, deep purple and neon red lighting, 16:9, hyper-detailed digital art.";
 
-    const fetchImage = async (retryCount = 0) => {
+    // まず ai-bg.jpg があるかチェック
+    const checkImage = new Image();
+    checkImage.src = "ai-bg.jpg";
+    checkImage.onload = () => {
+        imgEl.src = "ai-bg.jpg";
+        imgEl.style.display = "block";
+        imgEl.style.opacity = "0.7";
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 1000);
+        statusText.innerText = "AI司令室、同期完了。";
+        syncStatus.innerText = "HANDSON ACTIVE";
+        syncStatus.style.color = "#4ADE80";
+    };
+
+    checkImage.onerror = async () => {
+        // ai-bg.jpg がない場合のみ生成を試みる
+        const promptText = "A cinematic, ultra-modern interior of a high-tech AI video operations room, glowing data interfaces, holographic editing timelines, 16:9, hyper-detailed digital art.";
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
                 method: 'POST',
@@ -535,26 +554,22 @@ async function initAiDisplay() {
             
             if (base64) {
                 imgEl.src = `data:image/png;base64,${base64}`;
+                imgEl.style.display = "block";
                 imgEl.onload = () => {
                     loader.style.opacity = '0';
                     setTimeout(() => loader.style.display = 'none', 1000);
-                    imgEl.style.opacity = '0.5';
+                    imgEl.style.opacity = '0.7';
                     statusText.innerText = "AI司令室、同期完了。";
                     syncStatus.innerText = "HANDSON ACTIVE";
                     syncStatus.style.color = "#4ADE80";
                 };
             }
         } catch (error) {
-            if (retryCount < 5) {
-                setTimeout(() => fetchImage(retryCount + 1), Math.pow(2, retryCount) * 1000);
-            } else {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 1000);
-                statusText.innerText = "AI司令室、オフライン同期済み。";
-            }
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 1000);
+            statusText.innerText = "AI司令室、オフライン起動。";
         }
     };
-    fetchImage();
 }
 
 function reveal() {
